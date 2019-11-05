@@ -156,6 +156,7 @@
                                             <ul>
                                                 <li><a href="./docs/mlh/lectures/BME-336546-Lecture-C01-Introduction.pdf" class="pdf-logo" target="_blank"></a> BME-336546-Lecture-C01-Introduction.pdf</li>
                                                 <li><a href="./docs/mlh/lectures/BME-336546-Lecture-C02-Data exploration and preprocessing.pdf" class="pdf-logo" target="_blank"></a> BME-336546-Lecture-C02-Data exploration and preprocessing.pdf</li>
+                                                <li><a href="./docs/mlh/lectures/BME-336546-Lecture-C04-Linear models for regression.pdf" class="pdf-logo" target="_blank"></a> BME-336546-Lecture-C04-Linear models for regression.pdf</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -284,7 +285,8 @@
                                     <a class="nav-link active" id="mlh-tab1" data-toggle="tab" href="#mlh-tab-1" role="tab" aria-controls="mlh-tab-1" aria-selected="true"> ABOUT</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="mlh-tab2" data-toggle="tab" href="#mlh-tab-2" role="tab" aria-controls="mlh-tab-2" aria-selected="false"> CODE AND DATA</a>
+                                    <a class="nav-link" id="mlh-tab2" data-toggle="tab" href="#mlh-tab-2" role="tab" aria-controls="mlh-tab-2" aria-selected="false"> 
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -297,42 +299,157 @@
                                 <!-- Tab Content Text -->
                                 <div class="tab-content-text">
                                     <p>
-                                        The Technion-MLH Challenge  aims to
-                                        stimulate rapid progress on an unsolved question of practical clinical
-                                        significance and that may benefit improving healthcare outcome for the citizen
-                                        of Israel and globally. For that purpose, data will be provided to the students
-                                        at the beginning of the course together with the medical question of interest.
-                                        The dataset consists of a collection of variables and/or physiological signals
-                                        that need to be analyzed toward a defined goal. The students are provided with
-                                        a subset of the data, the “training set” that will be used by each team to
-                                        develop their algorithm and a “test set” that will not be provided to the team
-                                        and which will be used to analyze the student’s algorithm performance. The data
-                                        and question we ask are novel and you will be the first to research it!
+                                    <b>Introduction</b><br>
+                                    The Technion-MLH Challenge, denoted ‘Challenge’ in the following, aims to stimulate rapid progress on an unsolved question of practical clinical significance and that may benefit improving healthcare outcomes for the citizen of Israel and globally. For that purpose, data will be provided to the participants at the beginning of the course together with the medical question of interest. The dataset consists of a collection of variables and/or physiological signals that need to be analyzed toward a defined goal. The participants are provided with a subset of the data, the “training set” that will be used by each team to develop their algorithm and a “test set” that will not be provided to the team and which will be used to analyze the participants’ algorithm performance. The data and question we ask are novel and you will be the first to research it!
+                                    The Horef 2019 Challenge in partnership with the Rambam Children’s hospital addresses the following research question:
+                                    <br>
+                                    <br>
+                                    For children admitted with bronchiolitis at the Rambam, predict whether the length of stay will be prolonged (superior to 4.5 days) by a prior exposure to an increased air pollution level?
+                                    
+                                    <br>
+                                    <br>
+                                    In the context of this research “length of stay” is used as a proxy for the severity of bronchiolitis and so the underlying question we ask is whether the air pollution level is an independent variable increasing the severity of bronchiolitis cases that were admitted at the Rambam. Retrospective data covering the past 20 years will be used.
                                     </p>
+                                    
                                     <p>
-                                        The Winter 2019 Challenge in partnership with the Rambam Children’s hospital
-                                        addresses the following research question:
+                                    <b>Medical background</b><br>
+                                    Viral bronchiolitis is the most common reason for hospitalizing young infants in the winter season1. The diagnosis of bronchiolitis is a clinical one: difficulty breathing, coryza, cough, wheeze and crepitations on chest auscultation. The disease is associated with viral infection. Respiratory syncytial virus (RSV) accounts for 50–80%2. It has a seasonal pattern, with the highest incidence in the winter months3. Over the last several decades, a growing body of evidence has linked short-term and long-term exposures to ambient air pollution with respiratory and cardiovascular diseases and mortality.  Certain particulate and gaseous pollutants - especially particulate matter, which is subdivided depending on particle size as either less than 2.5 mm - PM2.5, or less than 10 mm -PM10 -, have a clinically relevant effect on hospital admissions for bronchiolitis in children below age two years old4. Yet, there is paucity of data on the impact of air pollution on severity of disease in bronchiolitis.
+                                    </p>
+                                    
+                                    <p>
+                                    <b>Variables</b><br>
+                                    Data on air pollution (PM2.5, PM10 and Nox), humidity and temperature were 
+                                        collected from monitoring stations available from the ministry environmental 
+                                        protection website (https://svivaaqm.net) from 2000 onwards. Information on 
+                                        patients admitted and diagnosed with bronchiolitis were extracted from the 
+                                        Rambam medical record system from year 2000 onwards. 
+                                        Patients zip code were mapped to the closest monitoring station location with 
+                                        available data and up to a 30km radius around the patient location. 
+                                        The following variables are provided: <br>
+                                    
+                                    
+                                    Target variable:<br>
+                                    <ul style="list-style-type:disc;">
+                                        <li> Length of stay: this is the time patients stayed under observation at the Rambam. 
+                                            A length of stay that is superior to 4.5 days will be considered as prolonged and used 
+                                            as a proxy for the severity of bronchiolitis. This variable is provided both as a continuous 
+                                            variable of the total number of days of stay and as a binary variable with 0: stay is less than 
+                                            4.5 days and 1: stay is superior or equal to 4.5 days. The Challenge scoring system will assess 
+                                            your predictions against the binary variable but we provide the continuous variable in case you want to explore new avenues! </li>
+                                    </ul>
+                                    <br>
+                                        
+                                    Patients variables:<br>
+                                    <li>
+                                    <ul style="list-style-type:disc;"> 
+                                        <li> Gender: male/female (binary).</li> 
+                                        <li> Comorbidities: History of prematurity, respiratory disease, cardiac disease, metabolic disease genetic disease, developmental delay, neurological, respiratory- are provided as binary variables.</li>
+                                        <li> Age at diagnosis: continuous variable (double). </li>
+                                        <li> Ethnicity: as a categorical variable, Jewish: 1, Muslim Arab: 2, Christian Arab: 3, Druze: 4. </li>
+                                        <li> Birth delivery week: continuous variable (integer). </li>
+                                        <li> Birth-weight (g): continuous variable (double). </li>
+                                    </ul>    
+                                    <br>
 
-                                        For children admitted with bronchiolitis at the Rambam, predict whether the
-                                        length of stay will be prolonged (superior to 2.5 days) by a prior exposure to
-                                        an increased air pollution level?
+                                    The following variables are provided for the 30 days prior to admission to the Rambam hospital:
+                                    <ul style="list-style-type:disc;">
+                                        <li> PM2.5: fine particles (or particulate matter, PM) with a diameter of 2.5µm or less. </li>
+                                        <li> PM10: inhalable coarse particles which are coarse particles with a diameter below 10µm. </li>
+                                        <li> Nox: Nitrogen dioxide is an irritant gas, which at high concentrations causes inflammation of the airways. </li>
+                                        <li> Temperature: in degree Celsius. </li>
+                                        <li> Relative humidity: the ratio of the partial pressure of water vapor to the equilibrium vapor pressure of water at a given temperature. </li>
+                                    </ul>
+                                    <br>
+                                    
                                     </p>
+                                
                                     <p>
-                                        In the context of this research “length of stay” is used as a proxy for the
-                                        severity of bronchiolitis and so the underlying question we ask is whether the
-                                        air pollution level is an independent variable increasing the severity of
-                                        bronchiolitis cases that are admitted at the Rambam.
+                                    <b>Challenge rules</b><br>
+                                    <ul style="list-style-type:disc;">
+                                        <li> Work is performed in teams of three students. </li>
+                                        <li> You are free to choose your teammates. </li>
+                                        <li> You are encouraged to collaborate between different teams and exchanges tips, 
+                                            observation and even code. This is why we call this a “Challenge”, the end goal 
+                                            is to solve a clinical question. However, each group must present their unique approach 
+                                            by the deadline. </li>
+                                        <li> Source code submitted should be in Python and following the template format we provide.</li>
+                                        <li> It is forbidden to transfer the complete or part of the dataset to someone outside the 
+                                            course. These are medical data and should be handled safely.</li>
+                                        <li> Publication of results in conference or journals based on the data 
+                                            provided by the Challenge is forbidden without prior consent of the 
+                                            Technion (JB) and Rambam (KM) PIs. </li>
+                                    </ul>
                                     </p>
+                                
+                                    <p>
+                                    <b>Scoring system</b><br>
+                                        Your algorithm will be scored using the area under the receiver operative curve measure (AUROC) performance statistic.
+                                    </p>
+                            
+                                    <p>
+                                    <b>Timeline</b><br>
+                                        Your final code (source and trained model structures) must be handed before the beginning 
+                                        of week 12. Code should be provided in python using the template provided by the Challenge. 
+                                        In addition to the source code you should hand a report of five-page maximum explaining your 
+                                        observations and approach by the end of the course (i.e. W13). Timeline:
+                                        <br>
+                                        - Any time during the semester and up to the end of week 11: you can submit an 
+                                        entry to the Challenger manager (morandavoodi@gmail.com) for scoring on the 
+                                        test set and who will provide you with your updated score. You are allowed up to 3 submissions.
+                                        <br>
+                                        - End of W12: announcement of Challenge finalist and invitation 
+                                        to the top-3 teams to present for the final.
+                                        <br>
+                                        - W13: Challenge final.
+                                        <br>
+                                        - W13: Challenge report submission.                                       
+                                    </p>    
+                                    
+                                    <p>
+                                    <b>Marking</b><br>
+                                        The marking of this work will be independent of your final score on the 
+                                        test set and will be based on the evaluation of your approach in tackling
+                                        the research question (rational, experimental design etc.) and any relevant 
+                                        observation you make on the topic of interest. Each of the following four parts will be assessed and each be worth 25% of the mark for the Technion-MLH Challenge assignment:
+                                        <br>
+                                        - Data exploration and preprocessing (e.g. summary statistics, data cleaning).<br>
+                                        - Methods (e.g. standardization, classifiers, evaluation of generalization).<br>
+                                        - Results (e.g. presentation of the key performance statistics).<br>
+                                        - Discussion. In particular, discussion of the air pollution features 
+                                        in explaining the final classifier prediction (feature importance) and conclusion 
+                                        on the importance of these variables. Interesting observations made.
+                                    </p> 
+                            
+                                    <p>
+                                       <b>Technion-MLH Challenge prizes</b><br>
+                                        The top-3 scoring teams on the hidden test set will be invited to the final and 
+                                        present their work during the last week of the course. A panel of judges will, 
+                                        based on the scoring of the teams and their presentation performance, vote for the Challenge winning team. 
+                                        The winning team will get the following benefits:
+                                        <br>
+                                        - Visit at the Rambam Children hospital.<br>
+                                        - A prize certificate.<br>
+                                        - Be invited to pursue their analysis up to publication.
+                                    </p>
+                            
+                                    <p>
+                                        <b>Recommended readings</b><br>
+                                        Yitshak-Sade, Maayan, et al. "Air pollution and hospitalization for bronchiolitis among young children." Annals of the American Thoracic Society 14.12 (2017): 1796-1802.
+                                        <br>
+                                        Horne, Benjamin D., et al. "Short-term elevation of fine particulate matter air pollution and acute lower respiratory infection." American journal of respiratory and critical care medicine 198.6 (2018): 759-766.
+                                    </p>
+                            
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="mlh-tab-2" role="tabpanel" aria-labelledby="mlh-tab2">
                                 <!-- Tab Content Text -->
                                 <div class="tab-content-text">
                                     <p>
-                                      Under development.
+                                        The dataset is available here.
                                     </p>
                                     <p>
-                                      The challenge data and  a starter project with initial code will soon be posted here.
+                                      A starter project with a sample code and instruction for preparing your entry is available 
+                                        <a href="https://github.com/aim-lab/MLH-challenge-starter-project">here</a>.
                                     </p>
                                     <!--
                                     <p>
