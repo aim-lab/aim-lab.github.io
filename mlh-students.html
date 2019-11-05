@@ -311,22 +311,43 @@
                                     </p>
                                     <p>
                                     <b>Variables</b><br>
-                                    Data on air pollution (PM2.5, PM10 and Nox), humidity and temperature were collected from monitoring stations available from the ministry environmental protection website (https://svivaaqm.net) from 2000 onwards. Information on patients admitted and diagnosed with bronchiolitis were extracted from the Rambam medical record system from year 2000 onwards. Patients zip code were mapped to the closest monitoring station location with available data and up to a 30km radius around the patient location. The following variables are provided:
+                                    Data on air pollution (PM2.5, PM10 and Nox), humidity and temperature were 
+                                        collected from monitoring stations available from the ministry environmental 
+                                        protection website (https://svivaaqm.net) from 2000 onwards. Information on 
+                                        patients admitted and diagnosed with bronchiolitis were extracted from the 
+                                        Rambam medical record system from year 2000 onwards. 
+                                        Patients zip code were mapped to the closest monitoring station location with 
+                                        available data and up to a 30km radius around the patient location. 
+                                        The following variables are provided:
                                     
+                                    <br>
                                     Target variable:<br>
-                                    
-                                    <ul> Length of stay: this is the time patients stayed under observation at the Rambam. A length of stay that is superior to 4.5 days will be considered as prolonged and used as a proxy for the severity of bronchiolitis. This variable is provided both as a continuous variable of the total number of days of stay and as a binary variable with 0: stay is less than 4.5 days and 1: stay is superior or equal to 4.5 days. The Challenge scoring system will assess your predictions against the binary variable but we provide the continuous variable in case you want to explore new avenues!
+                                    <li>
+                                        <ul> Length of stay: this is the time patients stayed under observation at the Rambam. A length of stay that is superior to 4.5 days will be considered as prolonged and used as a proxy for the severity of bronchiolitis. This variable is provided both as a continuous variable of the total number of days of stay and as a binary variable with 0: stay is less than 4.5 days and 1: stay is superior or equal to 4.5 days. The Challenge scoring system will assess your predictions against the binary variable but we provide the continuous variable in case you want to explore new avenues!
+                                    </li>
                                     <br>
                                         
                                     Patients variables:<br>
+                                    <li>
                                     <ul> Gender: male/female (binary).
-                                    <ul> Comorbidities: History of prematurity, respiratory disease, cardiac disease, metabolic disease genetic disease, developmental delay, neurological, respiratory- are provided as binary variables.
-                                    <ul> Age at diagnosis: continuous variable (double).
-                                    <ul> Ethnicity: as a categorical variable, Jewish: 1, Muslim Arab: 2, Christian Arab: 3, Druze: 4.
-                                    <ul> Birth delivery week: continuous variable (integer).
-                                    <ul> Birth-weight (g): continuous variable (double).
+                                        <ul> Comorbidities: History of prematurity, respiratory disease, cardiac disease, metabolic disease genetic disease, developmental delay, neurological, respiratory- are provided as binary variables.
+                                        <ul> Age at diagnosis: continuous variable (double).
+                                        <ul> Ethnicity: as a categorical variable, Jewish: 1, Muslim Arab: 2, Christian Arab: 3, Druze: 4.
+                                        <ul> Birth delivery week: continuous variable (integer).
+                                        <ul> Birth-weight (g): continuous variable (double).
+                                    </li>    
                                     <br>
-                                        
+
+                                    The following variables are provided for the 30 days prior to admission to the Rambam hospital:
+                                    <li>
+                                        <ul> PM2.5: fine particles (or particulate matter, PM) with a diameter of 2.5µm or less.
+                                        <ul> PM10: inhalable coarse particles which are coarse particles with a diameter below 10µm.
+                                        <ul> Nox: Nitrogen dioxide is an irritant gas, which at high concentrations causes inflammation of the airways.
+                                        <ul> Temperature: in degree Celsius.
+                                        <ul> Relative humidity: the ratio of the partial pressure of water vapor to the equilibrium vapor pressure of water at a given temperature.
+                                    </li>
+                                    <br>
+                                    
                                     </p>
                                 </div>
                             </div>
