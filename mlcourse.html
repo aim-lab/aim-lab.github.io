@@ -36,10 +36,10 @@
                         <!-- Close Button -->
                         <button type="button" class="btn close-btn" data-dismiss="modal"><i class="fa fa-times"></i></button>
                         <!-- Form -->
-                        <form action="./mlh-students.html">
-                            <input class="form-control" placeholder="Enter username">
-                            <input class="form-control" type="password" id="myInput" placeholder="Enter password"><br><br>
-                            <button type="submit">Login</button>
+                        <form name="login_form" id="login_form">
+                            <input class="form-control" id="mlh-username" placeholder="Enter username">
+                            <input class="form-control" id="mlh-password" type="password"  placeholder="Enter password"><br><br>
+                            <button class="btn uza-btn btn-3 mt-15" onsubmit="auth_user()">Login</button>
                         </form>
                     </div>
                 </div>
@@ -450,7 +450,55 @@
 
     <script type="text/javascript">
 
+        document.getElementById("login_form").addEventListener("submit", auth_user);   
+
      
+        function auth_user(){
+
+            var method = -1;
+            var username = document.getElementById("mlh-username").value;
+            var password = document.getElementById("mlh-password").value; 
+
+            var xhttp;
+            if (window.XMLHttpRequest) {
+                // code for modern browsers
+                xhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+
+                    resultJSON = JSON.parse(this.responseText);
+
+                    var responseStatus = resultJSON['LOGIN'];
+
+                    if(responseStatus == "FAIL"){
+                        console.log('fail');
+
+                    } else {
+                        window.location.href= resultJSON['LOGIN'];
+                    }
+
+                    console.log('ok');
+                    
+
+                }
+            };
+                //xhttp.open("POST", "http://127.0.0.1:5000", true);
+                xhttp.open("POST", "https://aimlabmanager.pythonanywhere.com/", true);
+
+                var auth = new FormData();
+                auth.append('METHOD', method);
+                auth.append('USERNAME', username);
+                auth.append('PASSWORD', password);
+        
+
+                xhttp.send(auth);
+
+                event.preventDefault(); 
+                }
 
     </script>
 
