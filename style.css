@@ -794,16 +794,16 @@ color: #d6a433;
   background-image: linear-gradient(149deg, rgba(69,125,150,1) 0%, rgba(24,61,99,0.9808298319327731) 100%);}
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .single-welcome-slide3 {
-      height: 300px; } }
+      height: 750px; } }
   @media only screen and (min-width: 768px) and (max-width: 991px) {
     .single-welcome-slide3 {
-      height: 300px; } }
+      height: 600px; } }
   @media only screen and (max-width: 767px) {
     .single-welcome-slide3 {
-      height: 300px; } }
+      height: 900px; } }
   @media only screen and (min-width: 576px) and (max-width: 767px) {
     .single-welcome-slide3 {
-      height: 300px; } }
+      height: 1000px; } }
 .single-welcome-slide3 .background-curve3 {
   position: absolute;
   width: 70%;
@@ -819,9 +819,8 @@ color: #d6a433;
   position: absolute;
   z-index: 1; }
   @media only screen and (max-width: 767px) {
-
-       }
-
+    .single-welcome-slide3 .welcome-text3 {
+      padding-top: 50px; } }
 .single-welcome-slide3 .welcome-text3 h2 {
   font-size: 72px;
   display: block;
@@ -837,11 +836,10 @@ color: #d6a433;
       font-size: 36px; } }
   @media only screen and (min-width: 576px) and (max-width: 767px) {
     .single-welcome-slide3 .welcome-text3 h2 {
-      font-size: 36px; } }
-    .single-welcome-slide3 .welcome-text3 h2 span {
-      color: #ffffff; }
-
-  .single-welcome-slide3 .welcome-text3 h5 {
+      font-size: 42px; } }
+.single-welcome-slide3 .welcome-text3 h2 span {
+  color: #ffffff; }
+.single-welcome-slide3 .welcome-text3 h5 {
   font-size: 22px;
   color: #303030;
   margin-bottom: 60px;
@@ -856,7 +854,7 @@ color: #d6a433;
       margin-bottom: 40px; } }
   @media only screen and (max-width: 767px) {
   .single-welcome-slide3 .welcome-thumbnail3 {
-      font-size: 14px;
+      
       margin-top: -120px;
       border-left: 2px solid;
       padding-left: 2.5rem; } }
