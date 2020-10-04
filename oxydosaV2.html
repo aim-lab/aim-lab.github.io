@@ -1,0 +1,689 @@
+---
+title: OxyDOSA App
+layout: default
+---
+
+<!-- ***** Contact Area Start ***** -->
+<section class="uza-contact-area section-padding-60">
+    <div class="container">
+        <!-- Contact Form -->
+        <div class="col-12 col-lg-12">
+            <div class="uza-contact-form mb-80">
+                <div class="contact-heading mb-50">
+                    <h5>Background</h5>
+                    <p>The OxyDOSA model was developed by Behar, Palmius and colleagues [1] for the purpose of
+                        obstructive sleep apnea (OSA) screening from a minimal
+                        set of oxygen saturation and demographic features. An implementation of the machine learning
+                        model trained on a representative
+                        population sample of 887 individuals is provided bellow.</br></p>
+                    <div class="disclaimer">
+                        <p2>The information on this page is for general informational purposes only and is not
+                            medical advice or a substitute for professional medical advice.
+                            For full terms and conditions of use, please see <a
+                                href="./docs/AIMLab.MedicalDisclaimer.pdf" style="color:#1583e9">here.</a></p2>
+                    </div>
+                    <h5>Fill out the form below to obtain the OxyDOSA score</h5>
+                </div>
+
+                <form name="oxydosa_form" id="oxydosa_form">
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <select class="form-control mb-40" id="guideline" name="guideline" required>
+                                    <option value="" disabled selected>Scoring guidelines used to assess patient
+                                    </option>
+                                    <option>AHI17A - Alternative rule of the 2017 AASM manual using Apnea Hypopnea
+                                        Index</option>
+                                    <option>AHI17R - Recommended rule of the 2017 AASM manual using Apnea Hypopnea
+                                        Index</option>
+                                    <option>RDI17A - Alternative rule of the 2017 AASM manual using Respiratory
+                                        Disturbance Index</option>
+                                    <option>RDI17R - Recommended rule of the 2017 AASM manual using Respiratory
+                                        Disturbance Index</option>
+                                </select>
+                                <label for="guideline" class="label-area-select-long">Scoring guidelines used to
+                                    assess patient</label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6" id="fg-odi">
+                            <div class="form-group">
+                                <input type="text" class="form-control mb-40" id="odi" name="odi" data-toggle="tooltip"
+                                    data-placement="Left" title="The 3% oxygen desaturation index" required>
+                                <label for="odi" class="label-area">ODI</label>
+                                <label for="odi" class="units-area9">Events/Hr</label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6" id="fg-t90">
+                            <div class="form-group">
+                                <input type="text" class="form-control mb-40" id="t90" name="t90" data-toggle="tooltip"
+                                    data-placement="Right" title="The proportion of time spent with SpO2<90%" required>
+                                <label for="t90" class="label-area">T90</label>
+                                <label for="t90" class="units-area1">%</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" id="fg-mspo2">
+                            <div class="form-group">
+                                <input type="text" class="form-control mb-40" id="mspo2" name="mspo2"
+                                    data-toggle="tooltip" data-placement="Left" title="The mean oxygen saturation"
+                                    required>
+                                <label for="mspo2" class="label-area">MSpO2</label>
+                                <label for="mspo2" class="units-area1">%</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" id="fg-spo2Nadir">
+                            <div class="form-group">
+                                <input type="text" class="form-control mb-40" id="spo2Nadir" name="spo2Nadir"
+                                    data-toggle="tooltip" data-placement="Right"
+                                    title="Lowest value of oxygen saturation" required>
+                                <label for="spo2Nadir" class="label-area">SpO2 Nadir</label>
+                                <label for="spo2Nadir" class="units-area1">%</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" id="fg-hbp">
+
+                            <div class="form-group">
+
+                                <select class="form-control mb-40" id="hbp" name="hbp" placeholder="sdg" required>
+                                    <option value="" disabled selected>High blood pressure</option>
+                                    <option>No</option>
+                                    <option>Yes</option>
+                                </select>
+                                <label for="hbp" class="label-area-select">High blood pressure</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" id="fg-gender">
+                            <div>
+                                <select class="form-control mb-40" id="gender" name="gender" required>
+                                    <option value="" disabled selected>Gender</option>
+                                    <option>Female</option>
+                                    <option>Male</option>
+                                </select>
+                                <label for="hbp" class="label-area-select">Gender</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" id="fg-snoring">
+                            <div>
+                                <select class="form-control mb-40" id="snoring" name="snoring" required>
+                                    <option value="" disabled selected>Snoring level</option>
+                                    <option>Does not snore</option>
+                                    <option>As loud as breathing</option>
+                                    <option>As loud as talking</option>
+                                    <option>Louder than talking</option>
+                                    <option>Can be heard in another room</option>
+                                </select>
+                                <label for="hbp" class="label-area-select">Snoring level</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" id="fg-fatigue">
+                            <div>
+                                <select class="form-control mb-40" id="fatigue" name="fatigue" required>
+                                    <option value="" disabled selected>Frequency of daytime fatigue</option>
+                                    <option>Never</option>
+                                    <option>1-2x/Month</option>
+                                    <option>1-2x/Week</option>
+                                    <option>3-4x/Week</option>
+                                    <option>Daily</option>
+                                </select>
+                                <label for="hbp" class="label-area-select">Frequency of daytime fatigue</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" id="fg-obs">
+                            <div>
+                                <select class="form-control mb-40" id="obs" name="obs" required>
+                                    <option value="" disabled selected>How often apneas have been observed</option>
+                                    <option>Never</option>
+                                    <option>1-2x/Month</option>
+                                    <option>1-2x/Week</option>
+                                    <option>3-4x/Week</option>
+                                    <option>Daily</option>
+                                </select>
+                                <label for="hbp" class="label-area-select">How often apneas have been
+                                    observed</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" id="fg-bmi">
+
+                            <div class="form-group">
+                                <input type="text" class="form-control mb-40" id="bmi" name="bmi" data-toggle="tooltip"
+                                    data-placement="Right" title="Body mass index" required>
+                                <label for="bmi" class="label-area">BMI </label>
+                                <label for="bmi" class="units-area7"><a
+                                        href="https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmi-m.htm"
+                                        target="_blank"><i class="fa fa-calculator" style="color:#1583e9"></i></a>
+                                    kg/m2</label>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6" id="fg-age">
+                            <div class="form-group">
+                                <input type="text" class="form-control mb-40" id="age" name="age" required>
+                                <label for="age" class="label-area">Age</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" id="fg-nc">
+                            <div class="form-group" id="fg-nc">
+                                <input type="text" class="form-control mb-40" id="nc" name="nc" required>
+                                <label for="nc" class="label-area">Neck circumference</label>
+                                <label for="nc" class="units-area2">cm</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+
+                            <div class="post-content text-center mb-40">
+                                <!-- <button class="btn uza-btn btn-3 mt-15">Compute Score</button> -->
+                                <button class="btn uza-btn btn-3 mt-15" onsubmit="requestScore()">Compute
+                                    Score</button>
+                                <button class="btn uza-btn btn-3 mt-15" onclick="clearForm()">Clear</button>
+                                <button class="btn uza-btn btn-3 mt-15" onclick="loadProfile()" data-toggle="tooltip"
+                                    data-placement="Top"
+                                    title="Test case diagnosed with OSA. The individual had an AHI (AASM 2017 and recommended rule) of 7.1 and suffered from daily daytime sleepiness">Test
+                                    Case</button>
+
+                                <!-- <h5 id="scoreResult"></h5> -->
+                            </div>
+
+                        </div>
+                        <br><br>
+
+                        <br><br>
+                        [1] Joachim A. Behar*, Niclas Palmius*, Qiao Li, Silverio Garbuio, Fabìola P. G Rizzatti,
+                        Lia Bittencourt, Sergio Tufik#, Gari D. Clifford#.
+                        Feasibility of single channel oximetry monitoring for obstructive sleep apnea screening.
+                        Under review in EClinicalMedicine.
+                        * Equal contribution.
+                        # Equal senior authorship.
+                        <br><br>
+                        Acknowledgement: The online applet of the OxyDOSA model was developped by Ronen Barski.
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+</section>
+<!-- ***** Contact Area End ***** -->
+
+<!-- ***** Top Search Area Start ***** -->
+<div class="top-search-area">
+    <!-- Search Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <!-- Close Button -->
+                    <button type="button" class="btn close-btn" data-dismiss="modal" onclick="clearResults()"><i
+                            class="fa fa-times"></i></button>
+                    <!-- Form -->
+                    <form action="index.html" method="post">
+                        <label data-toggle="tooltip" data-placement="Top"
+                            title="Oxygen saturation and Demographics based model for OSA
+                            (combination of oxygen saturation biomarkers, demographic and anthropometric information)
+                            Joachim A. Behar*, Niclas Palmius*, Qiao Li, Silverio Garbuio, Fabìola P. G Rizzatti, Lia Bittencourt, Sergio Tufik#, Gari D. Clifford# (2019) Feasibility of single channel oximetry monitoring for obstructive sleep apnea screening. EClinicalMedicine , 11, 81-88.">OxyDOSA
+                            [?]</label>
+                        <input type="search" id="resOXYDOSA" class="form-control" placeholder="" disabled>
+
+
+                        <!-- <button type="submit" data-dismiss="modal">Close</button> -->
+                        <div align="center">
+                            <div class='my-legend'>
+                                <div class='legend-scale'>
+                                    <div class='legend-title'>OxyDOSA legend</div>
+                                    <ul class='legend-labels' padding-right="30px">
+                                        <li><span style='background:#EBB32C;'></span>OSA</li>
+                                        <li><span style='background:#2DB680;'></span>No OSA</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="myCanvas"></canvas>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Top Search Area End ***** -->
+
+
+<script type="text/javascript">
+
+    document.getElementById("oxydosa_form").addEventListener("submit", requestScore);
+
+    var guidelines = document.getElementById("guideline");
+
+    guidelines.addEventListener("click", function () {
+
+        if (guidelines.selectedIndex == 1) {
+
+            document.getElementById("fg-mspo2").style.display = "inline"; //SPO2_MEAN_TRT
+            document.getElementById("fg-spo2Nadir").style.display = "inline"; //SPO2_PERCENTILE_1_TRT
+            document.getElementById("fg-t90").style.display = "none"; //SPO2_BELOW_90_TRT
+            document.getElementById("fg-odi").style.display = "inline"; //DESAT_INDEX_TRT_ALL
+            document.getElementById("fg-snoring").style.display = "none"; //SB_RAW_SNORING_LEVEL
+            document.getElementById("fg-fatigue").style.display = "none"; //SB_RAW_DAYTIME_FATIGUE
+            document.getElementById("fg-obs").style.display = "none"; //SB_RAW_FREQ_OBS_APNOEA
+            document.getElementById("fg-hbp").style.display = "none"; //SB_SCORE_HIGH_BP
+            document.getElementById("fg-bmi").style.display = "none"; //SB_RAW_BMI
+            document.getElementById("fg-age").style.display = "inline"; //SB_RAW_AGE
+            document.getElementById("fg-gender").style.display = "none"; //SB_SCORE_GENDER
+            document.getElementById("fg-nc").style.display = "none"; //SB_RAW_NECK_CIRC 
+
+            document.getElementById("odi").required = true;//DESAT_INDEX_TRT_ALL
+            document.getElementById("mspo2").required = true; //SPO2_MEAN_TRT
+            document.getElementById("age").required = true; //SB_RAW_AGE
+            document.getElementById("spo2Nadir").required = true; //SPO2_PERCENTILE_1_TRT
+
+            document.getElementById("t90").required = false; //SPO2_BELOW_90_TRT
+            document.getElementById("snoring").required = false; //SB_RAW_SNORING_LEVEL
+            document.getElementById("fatigue").required = false;//SB_RAW_DAYTIME_FATIGUE
+            document.getElementById("obs").required = false; //SB_RAW_FREQ_OBS_APNOEA
+            document.getElementById("hbp").required = false; //SB_SCORE_HIGH_BP
+            document.getElementById("bmi").required = false; //SB_RAW_BMI
+            document.getElementById("gender").required = false; //SB_SCORE_GENDER
+            document.getElementById("nc").required = false; //SB_RAW_NECK_CIRC */
+
+
+        } else if (guidelines.selectedIndex == 2) {
+
+            document.getElementById("fg-mspo2").style.display = "inline"; //SPO2_MEAN_TRT
+            document.getElementById("fg-spo2Nadir").style.display = "none"; //SPO2_PERCENTILE_1_TRT
+            document.getElementById("fg-t90").style.display = "none"; //SPO2_BELOW_90_TRT
+            document.getElementById("fg-odi").style.display = "inline"; //DESAT_INDEX_TRT_ALL
+            document.getElementById("fg-snoring").style.display = "inline"; //SB_RAW_SNORING_LEVEL
+            document.getElementById("fg-fatigue").style.display = "none"; //SB_RAW_DAYTIME_FATIGUE
+            document.getElementById("fg-obs").style.display = "none"; //SB_RAW_FREQ_OBS_APNOEA
+            document.getElementById("fg-hbp").style.display = "none"; //SB_SCORE_HIGH_BP
+            document.getElementById("fg-bmi").style.display = "none"; //SB_RAW_BMI
+            document.getElementById("fg-age").style.display = "inline"; //SB_RAW_AGE
+            document.getElementById("fg-gender").style.display = "none"; //SB_SCORE_GENDER
+            document.getElementById("fg-nc").style.display = "none"; //SB_RAW_NECK_CIRC 
+
+
+            document.getElementById("odi").required = true; //DESAT_INDEX_TRT_ALL
+            document.getElementById("mspo2").required = true; //SPO2_MEAN_TRT
+            document.getElementById("snoring").required = true; //SB_RAW_SNORING_LEVEL
+            document.getElementById("age").required = true; //SB_RAW_AGE
+
+            document.getElementById("spo2Nadir").required = false; //SPO2_PERCENTILE_1_TRT
+            document.getElementById("t90").required = false; //SPO2_BELOW_90_TRT
+            document.getElementById("fatigue").required = false;//SB_RAW_DAYTIME_FATIGUE
+            document.getElementById("obs").required = false; //SB_RAW_FREQ_OBS_APNOEA
+            document.getElementById("hbp").required = false; //SB_SCORE_HIGH_BP
+            document.getElementById("bmi").required = false; //SB_RAW_BMI
+            document.getElementById("gender").required = false; //SB_SCORE_GENDER
+            document.getElementById("nc").required = false; //SB_RAW_NECK_CIRC */
+
+        } else if (guidelines.selectedIndex == 3) {
+
+            document.getElementById("fg-mspo2").style.display = "inline"; //SPO2_MEAN_TRT
+            document.getElementById("fg-spo2Nadir").style.display = "inline"; //SPO2_PERCENTILE_1_TRT
+            document.getElementById("fg-t90").style.display = "none"; //SPO2_BELOW_90_TRT
+            document.getElementById("fg-odi").style.display = "inline"; //DESAT_INDEX_TRT_ALL
+            document.getElementById("fg-snoring").style.display = "inline"; //SB_RAW_SNORING_LEVEL
+            document.getElementById("fg-fatigue").style.display = "none"; //SB_RAW_DAYTIME_FATIGUE
+            document.getElementById("fg-obs").style.display = "none"; //SB_RAW_FREQ_OBS_APNOEA
+            document.getElementById("fg-hbp").style.display = "none"; //SB_SCORE_HIGH_BP
+            document.getElementById("fg-bmi").style.display = "none"; //SB_RAW_BMI
+            document.getElementById("fg-age").style.display = "inline"; //SB_RAW_AGE
+            document.getElementById("fg-gender").style.display = "none"; //SB_SCORE_GENDER
+            document.getElementById("fg-nc").style.display = "inline"; //SB_RAW_NECK_CIRC 
+
+
+            document.getElementById("odi").required = true; //DESAT_INDEX_TRT_ALL
+            document.getElementById("mspo2").required = true; //SPO2_MEAN_TRT
+            document.getElementById("snoring").required = true; //SB_RAW_SNORING_LEVEL
+            document.getElementById("age").required = true; //SB_RAW_AGE
+            document.getElementById("spo2Nadir").required = true; //SPO2_PERCENTILE_1_TRT
+            document.getElementById("nc").required = true; //SB_RAW_NECK_CIRC */
+            document.getElementById("age").required = true; //SB_RAW_AGE
+
+            document.getElementById("t90").required = false; //SPO2_BELOW_90_TRT
+            document.getElementById("snoring").required = false; //SB_RAW_SNORING_LEVEL
+            document.getElementById("fatigue").required = false;//SB_RAW_DAYTIME_FATIGUE
+            document.getElementById("obs").required = false; //SB_RAW_FREQ_OBS_APNOEA
+            document.getElementById("hbp").required = false; //SB_SCORE_HIGH_BP
+            document.getElementById("bmi").required = false; //SB_RAW_BMI
+            document.getElementById("gender").required = false; //SB_SCORE_GENDER
+
+        } else if (guidelines.selectedIndex == 4) {
+
+            document.getElementById("fg-mspo2").style.display = "inline"; //SPO2_MEAN_TRT
+            document.getElementById("fg-spo2Nadir").style.display = "inline"; //SPO2_PERCENTILE_1_TRT
+            document.getElementById("fg-t90").style.display = "none"; //SPO2_BELOW_90_TRT
+            document.getElementById("fg-odi").style.display = "inline"; //DESAT_INDEX_TRT_ALL
+            document.getElementById("fg-snoring").style.display = "inline"; //SB_RAW_SNORING_LEVEL
+            document.getElementById("fg-fatigue").style.display = "none"; //SB_RAW_DAYTIME_FATIGUE
+            document.getElementById("fg-obs").style.display = "none"; //SB_RAW_FREQ_OBS_APNOEA
+            document.getElementById("fg-hbp").style.display = "none"; //SB_SCORE_HIGH_BP
+            document.getElementById("fg-bmi").style.display = "none"; //SB_RAW_BMI
+            document.getElementById("fg-age").style.display = "inline"; //SB_RAW_AGE
+            document.getElementById("fg-gender").style.display = "inline"; //SB_SCORE_GENDER
+            document.getElementById("fg-nc").style.display = "inline"; //SB_RAW_NECK_CIRC 
+
+            document.getElementById("odi").required = true;//DESAT_INDEX_TRT_ALL
+            document.getElementById("mspo2").required = true; //SPO2_MEAN_TRT
+            document.getElementById("snoring").required = true; //SB_RAW_SNORING_LEVEL
+            document.getElementById("age").required = true; //SB_RAW_AGE
+            document.getElementById("spo2Nadir").required = true; //SPO2_PERCENTILE_1_TRT
+            document.getElementById("nc").required = true; //SB_RAW_NECK_CIRC */
+            document.getElementById("age").required = true; //SB_RAW_AGE
+
+
+            document.getElementById("t90").required = false; //SPO2_BELOW_90_TRT
+            document.getElementById("snoring").required = false; //SB_RAW_SNORING_LEVEL
+            document.getElementById("fatigue").required = false;//SB_RAW_DAYTIME_FATIGUE
+            document.getElementById("obs").required = false; //SB_RAW_FREQ_OBS_APNOEA
+            document.getElementById("hbp").required = false; //SB_SCORE_HIGH_BP
+            document.getElementById("bmi").required = false; //SB_RAW_BMI
+            document.getElementById("gender").required = false; //SB_SCORE_GENDER
+
+        }
+
+    });
+
+
+
+    var myChart;
+    var utils = Samples.utils;
+
+    utils.srand(110);
+
+
+    function colorize(opaque, ctx) {
+        var v = ctx.dataset.data[ctx.dataIndex];
+        var c = v < 0 ? '#2DB680' : '#EBB32C';
+
+        return c;
+    }
+
+
+    function buildChart(_data) {
+
+
+        var FEATURES = ['The mean oxygen saturation', 'Lowest value of oxygen saturation', 'The proportion of time spent with SpO2<90%', 'The 3% oxygen desaturation index', 'Snoring Level', 'Day Time Fatigue', 'OBS', 'High Blood Pressure', 'BMI', 'Age', 'Gender', 'Neck Circ.'];
+        var color = Chart.helpers.color;
+
+        _data_max = Math.max.apply(null, Object.values(_data));
+        _data_min = Math.min.apply(null, Object.values(_data));
+
+        var _data1 = Object.assign({}, _data);
+        Object.keys(_data1).forEach(function (key) { if (_data1[key] < 0) { _data1[key] = 0 } })
+
+        var _data2 = Object.assign({}, _data);
+        Object.keys(_data2).forEach(function (key) { if (_data2[key] >= 0) { _data2[key] = 0 } })
+
+        barChartData = {
+            labels: Object.keys(_data),
+            datasets: [{
+                label: 'Features driving model to predict OSA',
+                //labels: Object.keys(_data).filter(function(key){return _data[key] >= 0}),
+                //backgroundColor: colorize.bind(null, false),
+                backgroundColor: '#EBB32C',
+                data: Object.values(_data1).map(function (each_element) { return Number(each_element.toFixed(4)); })
+                //data: Object.values(_data).filter(function(v) {return v >= 0;}).map(function(each_element){return Number(each_element.toFixed(4));})
+
+            }, {
+
+                label: 'Features driving model to predict non-OSA',
+                //labels: Object.keys(_data).filter(function(key){return _data[key] < 0}),
+                //backgroundColor: colorize.bind(null, false),
+                backgroundColor: '#2DB680',
+                data: Object.values(_data2).map(function (each_element) { return Number(each_element.toFixed(4)); })
+                //data: Object.values(_data).filter(function(v) {return v < 0;}).map(function(each_element){return Number(each_element.toFixed(4));})
+
+            }]
+
+        };
+
+
+        //Object.keys(_data).forEach(function(key){if(_data[key] > 0){console.log(_data[key])}})
+
+
+
+
+        if (myChart) {
+            myChart.destroy();
+        }
+
+
+        var options = {
+
+            responsive: true,
+            elements: {
+                rectangle: {
+                    backgroundColor: colorize.bind(null, false),
+                    borderColor: colorize.bind(null, true),
+                    borderWidth: 3
+                }
+            },
+            maintainAspectRatio: false,
+            legend: {
+                display: true,
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Standardized Feature Importance for OxyDOSA',
+                fontSize: 15,
+                fontStyle: 'normal',
+
+            },
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                    ticks: {
+                        suggestedMax: Math.abs(_data_max) > Math.abs(_data_min) ? Math.abs(_data_max) : Math.abs(_data_min),
+                        suggestedMin: Math.abs(_data_max) > Math.abs(_data_min) ? -Math.abs(_data_max) : -Math.abs(_data_min),
+                    }
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            },
+            tooltips: {
+                enabled: false,
+            }
+        };
+
+        Chart.defaults.global.defaultFontSize = 13;
+        Chart.defaults.global.defaultFontFamily = "Aileron";
+        var ctx = document.getElementById('myCanvas').getContext('2d');
+        myChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: barChartData,
+            options: options
+        });
+
+
+    }
+
+    function pageload() {
+
+        document.getElementById("fg-mspo2").style.display = "none"; //SPO2_MEAN_TRT
+        document.getElementById("fg-spo2Nadir").style.display = "none"; //SPO2_PERCENTILE_1_TRT
+        document.getElementById("fg-t90").style.display = "none"; //SPO2_BELOW_90_TRT
+        document.getElementById("fg-odi").style.display = "none"; //DESAT_INDEX_TRT_ALL
+        document.getElementById("fg-snoring").style.display = "none"; //SB_RAW_SNORING_LEVEL
+        document.getElementById("fg-fatigue").style.display = "none"; //SB_RAW_DAYTIME_FATIGUE
+        document.getElementById("fg-obs").style.display = "none"; //SB_RAW_FREQ_OBS_APNOEA
+        document.getElementById("fg-hbp").style.display = "none"; //SB_SCORE_HIGH_BP
+        document.getElementById("fg-bmi").style.display = "none"; //SB_RAW_BMI
+        document.getElementById("fg-age").style.display = "none"; //SB_RAW_AGE
+        document.getElementById("fg-gender").style.display = "none"; //SB_SCORE_GENDER
+        document.getElementById("fg-nc").style.display = "none"; //SB_RAW_NECK_CIRC 
+
+    }
+
+    function loadProfile() {
+
+
+        document.getElementById("mspo2").value = 95.058324; //SPO2_MEAN_TRT
+        document.getElementById("spo2Nadir").value = 88; //SPO2_PERCENTILE_1_TRT
+        document.getElementById("t90").value = 0.017421; //SPO2_BELOW_90_TRT
+        document.getElementById("odi").value = 4.922; //DESAT_INDEX_TRT_ALL
+        document.getElementById("snoring").selectedIndex = 1; //SB_RAW_SNORING_LEVEL
+        document.getElementById("fatigue").selectedIndex = 5; //SB_RAW_DAYTIME_FATIGUE
+        document.getElementById("obs").selectedIndex = 1; //SB_RAW_FREQ_OBS_APNOEA
+        document.getElementById("hbp").selectedIndex = 1; //SB_SCORE_HIGH_BP
+        document.getElementById("bmi").value = 24.32; //SB_RAW_BMI
+        document.getElementById("age").value = 48; //SB_RAW_AGE
+        document.getElementById("gender").selectedIndex = 1; //SB_SCORE_GENDER
+        document.getElementById("nc").value = 30.8; //SB_RAW_NECK_CIRC 
+
+
+        //guidelines.click(3);
+
+        event.preventDefault();
+    }
+
+    function clearForm() {
+
+        document.getElementById("guideline").selectedIndex = undefined;
+        document.getElementById("mspo2").value = ""; //SPO2_MEAN_TRT
+        document.getElementById("spo2Nadir").value = ""; //SPO2_PERCENTILE_1_TRT
+        document.getElementById("t90").value = ""; //SPO2_BELOW_90_TRT
+        document.getElementById("odi").value = ""; //DESAT_INDEX_TRT_ALL
+        document.getElementById("snoring").selectedIndex = ""; //SB_RAW_SNORING_LEVEL
+        document.getElementById("fatigue").selectedIndex = ""; //SB_RAW_DAYTIME_FATIGUE
+        document.getElementById("obs").selectedIndex = ""; //SB_RAW_FREQ_OBS_APNOEA
+        document.getElementById("hbp").selectedIndex = ""; //SB_SCORE_HIGH_BP
+        document.getElementById("bmi").value = ""; //SB_RAW_BMI
+        document.getElementById("age").value = ""; //SB_RAW_AGE
+        document.getElementById("gender").selectedIndex = ""; //SB_SCORE_GENDER
+        document.getElementById("nc").value = ""; //SB_RAW_NECK_CIRC */
+
+        event.preventDefault();
+    }
+
+
+    function clearResults() {
+        document.getElementById("resOXYDOSA").style.backgroundColor = '#FFFFFF'; // orange
+
+    }
+
+    function requestScore() {
+
+        $('#searchModal').modal('toggle')
+
+        var xhttp;
+        if (window.XMLHttpRequest) {
+            // code for modern browsers
+            xhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                resultJSON = JSON.parse(this.responseText);
+
+                var oxydosa = JSON.parse(resultJSON['OXYDOSA']);
+                var stdf = JSON.parse(resultJSON['STDF']);
+
+
+                document.getElementById("resOXYDOSA").value = "Predicted probability of OSA: " + (oxydosa[1] * 100).toPrecision(3) + "%";
+
+                // green blue orange res
+                var colors = ['#2DB680', '#35C4F0', '#EBB32C', '#DF1D5A']
+
+                document.getElementById("resOXYDOSA").style.backgroundColor = colors[oxydosa[3]]; // orange
+
+                document.getElementById("resOXYDOSA").value = "Predicted probability of OSA: " + (oxydosa[1] * 100).toPrecision(3) + "%";
+
+                buildChart(stdf);
+            }
+        };
+
+        //xhttp.open("POST", "http://127.0.0.1:5000", true);
+        xhttp.open("POST", "https://aimlabmanager.pythonanywhere.com/", true);
+
+
+        var data = new FormData();
+        var ver = 2;
+        var method = document.getElementById("guideline").selectedIndex;
+        data.append('METHOD', method);
+        data.append('OXYDOSA_VER', ver);
+
+
+        if (method == 1) {
+
+            var odi = document.getElementById("odi").value; //DESAT_INDEX_TRT_ALL
+            var mspo2 = document.getElementById("mspo2").value; //SPO2_MEAN_TRT
+            var spo2Nadir = document.getElementById("spo2Nadir").value; //SPO2_PERCENTILE_1_TRT
+            var age = document.getElementById("age").value; //SB_RAW_AGE
+
+            data.append('DESAT_INDEX_TRT_ALL', odi);
+            data.append('SPO2_MEAN_TRT', mspo2);
+            data.append('SPO2_PERCENTILE_1_TRT', spo2Nadir)
+            data.append('SB_RAW_AGE', age);
+
+        } else if (method == 2) {
+
+            var odi = document.getElementById("odi").value; //DESAT_INDEX_TRT_ALL
+            var mspo2 = document.getElementById("mspo2").value; //SPO2_MEAN_TRT
+            var age = document.getElementById("age").value; //SB_RAW_AGE
+            var snoring = document.getElementById("snoring").selectedIndex - 1; //SB_RAW_SNORING_LEVEL
+
+            data.append('DESAT_INDEX_TRT_ALL', odi);
+            data.append('SPO2_MEAN_TRT', mspo2);
+            data.append('SB_RAW_AGE', age);
+            data.append('SB_RAW_SNORING_LEVEL', snoring);
+
+        } else if (method == 3) {
+
+            var odi = document.getElementById("odi").value; //DESAT_INDEX_TRT_ALL
+            var mspo2 = document.getElementById("mspo2").value; //SPO2_MEAN_TRT
+            var spo2Nadir = document.getElementById("spo2Nadir").value; //SPO2_PERCENTILE_1_TRT
+            var age = document.getElementById("age").value; //SB_RAW_AGE
+            var snoring = document.getElementById("snoring").selectedIndex - 1; //SB_RAW_SNORING_LEVEL
+            var nc = document.getElementById("nc").value; //SB_RAW_NECK_CIRC */
+
+
+            data.append('DESAT_INDEX_TRT_ALL', odi);
+            data.append('SPO2_MEAN_TRT', mspo2);
+            data.append('SPO2_PERCENTILE_1_TRT', spo2Nadir)
+            data.append('SB_RAW_SNORING_LEVEL', snoring);
+            data.append('SB_RAW_AGE', age);
+            data.append('SB_RAW_NECK_CIRC', nc);
+
+
+        } else if (method == 4) {
+
+            var odi = document.getElementById("odi").value; //DESAT_INDEX_TRT_ALL
+            var mspo2 = document.getElementById("mspo2").value; //SPO2_MEAN_TRT
+            var spo2Nadir = document.getElementById("spo2Nadir").value; //SPO2_PERCENTILE_1_TRT
+            var age = document.getElementById("age").value; //SB_RAW_AGE
+            var snoring = document.getElementById("snoring").selectedIndex - 1; //SB_RAW_SNORING_LEVEL
+            var nc = document.getElementById("nc").value; //SB_RAW_NECK_CIRC */
+            var gender = document.getElementById("gender").selectedIndex - 1; //SB_SCORE_GENDER
+
+
+            data.append('DESAT_INDEX_TRT_ALL', odi);
+            data.append('SPO2_MEAN_TRT', mspo2);
+            data.append('SPO2_PERCENTILE_1_TRT', spo2Nadir)
+            data.append('SB_SCORE_GENDER', gender);
+            data.append('SB_RAW_SNORING_LEVEL', snoring);
+            data.append('SB_RAW_AGE', age);
+            data.append('SB_RAW_NECK_CIRC', nc);
+
+        }
+
+        xhttp.send(data);
+
+        document.getElementById("resOXYDOSA").value = "Getting Results...";
+
+
+        event.preventDefault();
+
+    }
+
+
+</script>

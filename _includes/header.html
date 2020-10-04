@@ -1,0 +1,81 @@
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area">
+        <!-- Main Header Start -->
+        <div class="main-header-area">
+            <div class="classy-nav-container breakpoint-off">
+                <!-- Classy Menu -->
+                <nav class="classy-navbar justify-content-between" id="uzaNav">
+
+                    <!-- Logo -->
+                    <!-- <a class="nav-brand" href="index.html"><img src="{{site.baseurl}}/assets/img/core-img/logo.png" alt=""></a> -->
+
+                    <ul class="logo">
+                        <li>
+                            <h1>AIMLab<span style="color:#1583e9;font-weight:bold">.</span></h1>
+                        </li>
+                        <li><img src="{{site.baseurl}}/assets/img/bg-img/technion-logo.png" class="logo"></li>
+                    </ul>
+
+
+                    <!-- Navbar Toggler -->
+                    <div class="classy-navbar-toggler">
+                        <span class="navbarToggler"><span></span><span></span><span></span></span>
+                    </div>
+
+                    <!-- Menu -->
+                    <div class="classy-menu">
+                        <!-- Menu Close Button -->
+                        <div class="classycloseIcon">
+                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                        </div>
+
+                        <!-- Nav Start -->
+                        <div class="classynav">
+
+                            <ul id="nav">
+                                <li {% if page.url="{{site.baseurl}}/" %}class="current-item"{% endif %}><a href="{{site.baseurl}}/index">Home</a></li>
+                                <li {% if page.url="{{site.baseurl}}/team.html" %}class="current-item"{% endif %}><a href="{{site.baseurl}}/team">Team</a></li>
+                                <li><a href="#">Research</a>
+                                    <ul class="dropdown">
+                                        <li {% if page.url="{{site.baseurl}}/researchhtml" %}class="current-item"{% endif %}><a href="{{site.baseurl}}/research">Topics</a></li>
+                                        <li {% if page.url="{{site.baseurl}}/publications.html" %}class="current-item"{% endif %}><a href="{{site.baseurl}}/publications">Publications</a></li>
+                                        <li {% if page.url="{{site.baseurl}}/patents.html" %}class="current-item"{% endif %}><a href="{{site.baseurl}}/patents">Patents</a></li>
+                                        <li {% if page.url="{{site.baseurl}}/research-videos.html" %}class="current-item"{% endif %}><a href="{{site.baseurl}}/research-videos">Videos</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Teaching</a>
+                                    <ul class="dropdown">
+                                        <li {% if page.url="{{site.baseurl}}/mlcourse.html" %}class="current-item"{% endif %}><a href="{{site.baseurl}}/mlcourse">ML in Healthcare</a></li>
+                                        <li {% if page.url="{{site.baseurl}}/digital-health-course.html" %}class="current-item"{% endif %}><a href="{{site.baseurl}}/digital-health-course">Digital Health</a></li>
+                                        <li><a href="https://pbi-lab.github.io/" target="_blank">Mobile Lab</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Positions</a>
+                                    <ul class="dropdown">
+                                        <li {% if page.url="{{site.baseurl}}/positions.html" %}class="current-item"{% endif %}><a href="{{site.baseurl}}/positions">Open Positions</a></li>
+                                        <li {% if page.url="{{site.baseurl}}/ethics.html" %}class="current-item"{% endif %}><a href="{{site.baseurl}}/ethics">Ethics</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="{{site.baseurl}}/software">Software</a>
+                                    <ul class="dropdown">
+                                        <li {% if page.url="{{site.baseurl}}/oxydosaV2.html" %}class="current-item"{% endif %}><a href="{{site.baseurl}}/oxydosaV2">OxyDOSA</a></li>
+                                        <li><a href="http://fecgsyn.com/" target="_blank">FECGSYN</a></li>
+                                        <li><a href="https://physiozoo.com/" target="_blank">PhysioZoo</a></li>
+                                        <li><a href="https://cov19-resource.com/" target="_blank">COV19</a></li>
+                                    </ul>
+                                </li>
+                                <li {% if page.url="{{site.baseurl}}/gallery.html" %}class="current-item"{% endif %}><a href="{{site.baseurl}}/gallery">Gallery</a></li>
+                                <li {% if page.url="{{site.baseurl}}/contact.html" %}class="current-item"{% endif %}><a href="{{site.baseurl}}/contact">Contact</a></li>
+                            </ul>
+                            <div class="get-a-quote ml-4 mr-3">
+                                <a href="{{site.baseurl}}/news" class="btn uza-btn">News</a>
+                            </div>
+                        </div>
+                        <!-- Nav End -->
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
