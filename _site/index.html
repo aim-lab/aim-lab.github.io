@@ -99,7 +99,7 @@
                                         <li ><a href="/oxydosaV2">OxyDOSA</a></li>
                                         <li><a href="http://fecgsyn.com/" target="_blank">FECGSYN</a></li>
                                         <li><a href="https://physiozoo.com/" target="_blank">PhysioZoo</a></li>
-                                        <li><a href="https://cov19-resource.com/" target="_blank">COV19</a></li>
+                                        
                                     </ul>
                                 </li>
                                 <li ><a href="/gallery">Gallery</a></li>
@@ -261,6 +261,8 @@
 </section>
 <!-- ***** Welcome Area End ***** -->
 
+
+
 <!-- ***** About Us Area Start ***** -->
 <section class="uza-about-us-area">
     <div class="container">
@@ -269,10 +271,17 @@
             <!-- About Thumbnail -->
             <div class="col-12 col-md-6">
                 <div class="about-us-thumbnail mb-80">
-                    <img src="/assets/img/lab_photos/gallery_0.jpg" alt="">
-                    <!-- Video Area -->
-
+                    <div class="single-portfolio-slide">
+                        <img src="/assets/img/lab_photos/gallery_0.jpg" alt="">
+                        <!-- Overlay Effect -->
+                        <div class="overlay-effect"></div>
+                        <!-- View More -->
+                        <div class="view-more-btn">
+                            <a data-toggle="modal" data-src="https://www.youtube.com/embed/A-twOC3W558" data-target="#videoModel" href="/research"><i class="fas fa-play"></i></a>
+                        </div>
+                    </div>                    
                 </div>
+                
             </div>
 
             <!-- About Us Content -->
@@ -325,7 +334,7 @@
                     </div>
                     <!-- View More -->
                     <div class="view-more-btn">
-                        <a href="#"><i class="arrow_right"></i></a>
+                        <a href="/research"><i class="arrow_right"></i></a>
                     </div>
                 </div>
 
@@ -340,7 +349,7 @@
                     </div>
                     <!-- View More -->
                     <div class="view-more-btn">
-                        <a href="#"><i class="arrow_right"></i></a>
+                        <a href="/research"><i class="arrow_right"></i></a>
                     </div>
                 </div>
 
@@ -355,7 +364,7 @@
                     </div>
                     <!-- View More -->
                     <div class="view-more-btn">
-                        <a href="#"><i class="arrow_right"></i></a>
+                        <a href="/research"><i class="arrow_right"></i></a>
                     </div>
                 </div>
 
@@ -370,7 +379,7 @@
                     </div>
                     <!-- View More -->
                     <div class="view-more-btn">
-                        <a href="#"><i class="arrow_right"></i></a>
+                        <a href="/research"><i class="arrow_right"></i></a>
                     </div>
                 </div>
 
@@ -385,7 +394,7 @@
                     </div>
                     <!-- View More -->
                     <div class="view-more-btn">
-                        <a href="#"><i class="arrow_right"></i></a>
+                        <a href="/research"><i class="arrow_right"></i></a>
                     </div>
                 </div>
 
@@ -400,7 +409,7 @@
                     </div>
                     <!-- View More -->
                     <div class="view-more-btn">
-                        <a href="#"><i class="arrow_right"></i></a>
+                        <a href="/research"><i class="arrow_right"></i></a>
                     </div>
                 </div>
 
@@ -415,7 +424,7 @@
                     </div>
                     <!-- View More -->
                     <div class="view-more-btn">
-                        <a href="#"><i class="arrow_right"></i></a>
+                        <a href="/research"><i class="arrow_right"></i></a>
                     </div>
                 </div>
 
@@ -430,7 +439,7 @@
                     </div>
                     <!-- View More -->
                     <div class="view-more-btn">
-                        <a href="#"><i class="arrow_right"></i></a>
+                        <a href="/research"><i class="arrow_right"></i></a>
                     </div>
                 </div>
 
@@ -495,6 +504,53 @@
         </div>
     </div>
 </section>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="videoModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      
+      <div class="modal-body">
+
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>        
+        <!-- 16:9 aspect ratio -->
+        <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+        </div>
+        
+        
+      </div>
+
+    </div>
+  </div>
+</div> 
+
+
+<script >
+    $(document).ready(function() {
+        var $videoSrc = "https://www.youtube.com/embed/q5hHZsY2FM4";  
+        
+        // when the modal is opened autoplay it  
+        $('#videoModel').on('shown.bs.modal', function (e) {
+            
+        // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+        $("#video").attr('src',$videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0" ); 
+        })
+        
+        // stop playing the youtube video when I close the modal
+        $('#videoModel').on('hide.bs.modal', function (e) {
+            // a poor man's stop video
+            $("#video").attr('src',$videoSrc); 
+        }) 
+    // document ready  
+    });
+</script>
+
 <!-- ***** Services Area End ***** -->
 
 
