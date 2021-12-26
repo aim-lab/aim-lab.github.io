@@ -1,0 +1,13 @@
+jekyll -v
+
+bundle exec jekyll serve
+
+git add .
+git commit -m "....."
+git push origin master
+
+git clone ....(ssh)
+
+ctrl + / לשים מספר שורות בהערות
+
+-config.html
